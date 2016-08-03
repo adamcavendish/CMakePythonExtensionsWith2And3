@@ -1,1 +1,3 @@
 build/
+py2/libgreet.so
+py3/libgreet.so
