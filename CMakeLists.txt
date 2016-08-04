@@ -13,7 +13,7 @@ message("PYTHON2_FOUND ${PYTHON2_FOUND} PYTHON2_EXECUTABLE ${PYTHON2_EXECUTABLE}
 
 add_library(greet2 SHARED greet.c)
 target_include_directories(greet2 PUBLIC ${PYTHON2_INCLUDE_DIRS})
-target_link_libraries(greet2 ${Boost_LIBRARIES})
+target_link_libraries(greet2 ${PYTHON2_LIBRARIES})
 install(FILES "${PROJECT_BINARY_DIR}/libgreet2.so"
         DESTINATION "${PROJECT_SOURCE_DIR}/py2"
         PERMISSIONS
