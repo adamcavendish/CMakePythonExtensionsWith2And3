@@ -81,7 +81,7 @@ function(find_python min_version found executable version_string
   if(_found)
     set(_version_combined "${_version_major}.${_version_minor}")
 
-    find_package(PythonLibs "${_version_combined}" EXACT)
+    find_package(PythonLibs "${_version_string}" EXACT)
     if(PYTHONLIBS_FOUND)
       set_ifndef(_libraries ${PYTHON_LIBRARIES})
       set_ifndef(_include_dirs ${PYTHON_INCLUDE_PATH})
