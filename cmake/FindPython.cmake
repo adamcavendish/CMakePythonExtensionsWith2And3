@@ -30,11 +30,13 @@
 # version_string (variable): variable to set to python's version if found
 # version_major  (variable): variable to set to python's version major if found
 # version_minor  (variable): variable to set to python's version minor if found
+# version_patch  (variable): variable to set to python's version patch if found
 # libraries      (variable): variable to set to python's library path if found
 # include_dirs   (variable): variable to set to python's include path if found
 # packages_dir   (variable): variable to set to python's packages path if found
-function(find_python min_version found executable version_string
-         version_major version_minor libraries include_dirs packages_dir)
+function(find_python min_version found executable
+         version_string version_major version_minor version_patch
+         libraries include_dirs packages_dir)
 
   # macro set_from_env: set a cmake variable to the environment variable
   #                     if available
@@ -68,6 +70,7 @@ function(find_python min_version found executable version_string
     set(_version_string ${PYTHON_VERSION_STRING})
     set(_version_major ${PYTHON_VERSION_MAJOR})
     set(_version_minor ${PYTHON_VERSION_MINOR})
+    set(_version_patch ${PYTHON_VERSION_PATCH})
 
     # unset the variables to cleanup side effects from calling find_package
     unset(PYTHONINTERP_FOUND)
@@ -81,7 +84,7 @@ function(find_python min_version found executable version_string
   if(_found)
     set(_version_combined "${_version_major}.${_version_minor}")
 
-    find_package(PythonLibs "${_version_string}" EXACT)
+    find_package(PythonLibs "${_version_combined}")
     if(PYTHONLIBS_FOUND)
       set_ifndef(_libraries ${PYTHON_LIBRARIES})
       set_ifndef(_include_dirs ${PYTHON_INCLUDE_PATH})
@@ -182,6 +185,7 @@ function(find_python min_version found executable version_string
     set(${version_string} "${_version_string}" CACHE STRING "Python version")
     set(${version_major} "${_version_major}" PARENT_SCOPE)
     set(${version_minor} "${_version_minor}" PARENT_SCOPE)
+    set(${version_patch} "${_version_patch}" PARENT_SCOPE)
     set(${libraries} "${_libraries}" CACHE FILEPATH "Path to Python library")
     set(${include_dirs} "${_include_dirs}" CACHE PATH "Python include dir")
     set(${packages_dir} "${_packages_dir}" CACHE STRING "Python partial packages dir for install")
