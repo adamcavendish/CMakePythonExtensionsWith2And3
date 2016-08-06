@@ -1,3 +1,6 @@
+cmake/FindPythonInterp.cmake
+cmake/FindPythonLibs.cmake
+
 build/
 py2/libgreet.so
 py3/libgreet.so
